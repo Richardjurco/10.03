@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _10._00
+
+namespace _10._03
 {
     internal class Book
     {
@@ -14,31 +16,48 @@ namespace _10._00
         private string category;
         private string author;
         private int releaseDate;
-        public string Title(string title)
-        {
 
-            this.title = title;
-            return title;
-        }
-        public int Pages(int intpages)
+
+
+        public string Title
+
         {
-            this.pages = intpages;
-            return pages;
+            get { return title; }
+            set { title = value; }
         }
-        public String Category(string strcategory)
+        public String Category
+        { get { return category; } set { category = value; } }
+
+        public String Author
+        { get { return author; } set { author = value; } }
+
+
+        public int Pages
         {
-            this.category = strcategory;
-            return category;
+            get
+            {
+                return pages;
+            }
+            set
+            {
+                pages = pages = value <= 0 ? 1 : value;
+            }
         }
-        public String Author(string strauthor)
+        public int ReleaseDate
         {
-            this.author = strauthor;
-            return author;
-        }
-        public int ReleaseDate(int intreleaseDate)
-        {
-            this.releaseDate = intreleaseDate;
-            return releaseDate;
+            get => releaseDate;
+            set
+            {
+                if ((value >= 2021) || (value <= 1450))
+                {
+                    releaseDate = -1;
+                }
+                else
+                {
+                    releaseDate = value;
+                }
+            }
+
         }
         public void vypis()
 
@@ -49,10 +68,14 @@ namespace _10._00
             Console.WriteLine(author);
             Console.WriteLine(releaseDate);
         }
+
+
     }
+           
 }
-       
-        
+
+
+
 
         
 
